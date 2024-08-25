@@ -1,0 +1,20 @@
+{
+  "name": "coding-racer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch index.js",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "coding-racer": "file:",
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5"
+  }
+}
