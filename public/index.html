@@ -1,33 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Alexsander Gutierrez Gonçalves">
   <meta name="description" content="Jogo de digitação multiplayer">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="/css/styles.css">
   <title>Coding Racer</title>
 </head>
 
 <body>
   <div id="game_area">
-    <canvas id="canvas" width="640" height="200"></canvas>
+    <canvas id="canvas"></canvas>
+
+    <div id="controls_container" class="hidde">
+      <pre oncopy="event.preventDefault()" id="text"></pre>
+      <textarea autocomplete="off" autofocus type="text" id="input"></textarea>
+    </div>
+
     <button id="btn_play">PLAY</button>
 
     <form id="form" class="hidde">
 
       <div class="row">
 
-        <label for="man" class="character">
-          <input id="man" checked type="radio" hidden name="character" value="0">
-          <img src="images/man.png">
-        </label>
+        <input id="man" checked type="radio" hidden name="character" value="0">
+        <label for="man" class="character character__man"></label>
 
-        <label for="woman" class="character">
-          <input id="woman" type="radio" hidden name="character" value="1">
-          <img src="images/woman.png">
-        </label>
+        <input id="woman" type="radio" hidden name="character" value="1">
+        <label for="woman" class="character character__woman"></label>
 
       </div>
 
@@ -38,23 +40,19 @@
 
     </form>
 
-    <p id="loading" class="hidde">awaiting</p>
-
     <div id="end_container" class="hidde">
       <p>GAME OVER</p>
       <p>Winner</p>
       <p id="player_win"></p>
       <button id="btn_restart">PLAY AGAIN</button>
     </div>
-  </div>
 
-  <div id="controls_container" class="hidde">
-    <pre oncopy="event.preventDefault()" id="text"></pre>
-    <textarea autocomplete="off" autofocus type="text" id="input"></textarea>
+    <p id="loading" class="hidde">awaiting</p>
   </div>
 
   <script src="/socket.io/socket.io.js"></script>
-  <script type="module" src="script.js"></script>
+  <script src="/js/network.js"></script>
+  <script src="/js/script.js"></script>
 </body>
 
 </html>

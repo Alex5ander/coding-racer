@@ -4,12 +4,13 @@ import { Server, Socket } from 'socket.io';
 import { randomUUID } from 'crypto'
 const app = express();
 const server = http.createServer(app);
+const io = new Server(server, { cors: { origin: 'https://alex5ander.itch.io/coding-racer' } });
 // const io = new Server(server, { cors: { origin: 'https://html-classic.itch.zone' } });
-const io = new Server(server, { cors: { origin: '*' } });
+// const io = new Server(server, { cors: { origin: '*' } });
 
 app.use(express.static('public'));
 
-server.listen(3000);
+server.listen(3000, () => console.log("Server listen on http://localhost:3000"));
 
 const codes = [
   `def fibonacci(n):
@@ -91,11 +92,11 @@ class Room {
 let rooms = [];
 
 /** @param {Room} room */
-const updatePlayers = (room) => {
+const update = (room) => {
   for (let i = 0; i < room.players.length; i++) {
     let player = room.players[i];
     let players = room.players.sort((e) => e.id == player.id ? -1 : 0).map(({ progress, name, character }) => ({ progress, name, character }));
-    io.to(player.id).emit("updatePlayers", { players });
+    io.to(player.id).emit("update", { players });
   }
 }
 
@@ -105,8 +106,12 @@ const updatePlayers = (room) => {
  */
 const OnDisconnect = (socket, room) => {
   socket.on('disconnect', () => {
+    const player = room.players.find(e => e.id == socket.id);
     room.players = room.players.filter(e => e.id != socket.id);
     rooms = rooms.filter(e => e.players.length != 0);
+    if (player) {
+      console.log(`Player ${player.name} disconnected`);
+    }
     io.to(room.id).emit('opponent_disconnected');
   });
 }
@@ -148,7 +153,7 @@ const OnTyping = (socket, room) => {
       return prev
     }, 0);
 
-    updatePlayers(room);
+    update(room);
     callback(classes);
 
     if (player.typed == room.text) {
@@ -173,7 +178,7 @@ const OnJoin = (socket, room, player) => {
 
     if (room.players.length == 2) {
       io.to(room.id).emit('start', { text: room.text });
-      updatePlayers(room);
+      update(room);
     }
   });
 }
@@ -189,7 +194,7 @@ const OnConnection = (socket) => {
   }
 
   OnJoin(socket, room, player);
-  updatePlayers(room);
+  update(room);
   OnDisconnect(socket, room);
   OnTyping(socket, room);
 }

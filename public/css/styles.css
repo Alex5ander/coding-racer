@@ -87,13 +87,20 @@ canvas {
   cursor: pointer;
 }
 
-.character>input:checked+img {
-  outline: 1px dashed #3399da;
+input[type=radio]:checked+label {
+  outline: 2px dashed #3399da;
 }
 
-.character>img {
+.character {
   width: 32px;
+  aspect-ratio: 11/15;
   image-rendering: pixelated;
+  background: url("../images/spritesheet.png") no-repeat;
+  background-size: 300%;
+}
+
+.character__woman {
+  background-position: 0px 100%;
 }
 
 #name {
@@ -152,8 +159,8 @@ canvas {
 
 #controls_container {
   margin: auto;
-  width: min-content;
-  height: min-content;
+  width: 100%;
+  height: 50%;
 }
 
 .hidde {

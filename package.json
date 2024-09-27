@@ -14,7 +14,7 @@
   "description": "",
   "dependencies": {
     "coding-racer": "file:",
-    "express": "^4.19.2",
+    "express": "^4.21.0",
     "socket.io": "^4.7.5"
   }
 }
