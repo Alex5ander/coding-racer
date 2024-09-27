@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="author" content="Alexsander Gutierrez Gonçalves">
   <meta name="description" content="Jogo de digitação multiplayer">
-  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="./css/styles.css">
   <title>Coding Racer</title>
 </head>
 
@@ -16,7 +16,7 @@
 
     <div id="controls_container" class="hidde">
       <pre oncopy="event.preventDefault()" id="text"></pre>
-      <textarea autocomplete="off" autofocus type="text" id="input"></textarea>
+      <textarea autocomplete="off" type="text" id="input"></textarea>
     </div>
 
     <button id="btn_play">PLAY</button>
@@ -49,10 +49,9 @@
 
     <p id="loading" class="hidde">awaiting</p>
   </div>
-
-  <script src="/socket.io/socket.io.js"></script>
-  <script src="/js/network.js"></script>
-  <script src="/js/script.js"></script>
+  <script type="module" src="./js/socket.io.min.js"></script>
+  <script src="./js/network.js"></script>
+  <script src="./js/script.js"></script>
 </body>
 
 </html>

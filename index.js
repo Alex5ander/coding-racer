@@ -4,8 +4,7 @@ import { Server, Socket } from 'socket.io';
 import { randomUUID } from 'crypto'
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, { cors: { origin: 'https://alex5ander.itch.io/coding-racer' } });
-// const io = new Server(server, { cors: { origin: 'https://html-classic.itch.zone' } });
+const io = new Server(server, { cors: { origin: 'https://html-classic.itch.zone' } });
 // const io = new Server(server, { cors: { origin: '*' } });
 
 app.use(express.static('public'));
