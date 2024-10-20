@@ -14,7 +14,10 @@
   "description": "",
   "dependencies": {
     "coding-racer": "file:",
-    "express": "^4.21.0",
-    "socket.io": "^4.7.5"
+    "express": "^5.0.1",
+    "socket.io": "^4.8.0"
+  },
+  "engines": {
+    "node": "^16"
   }
 }
