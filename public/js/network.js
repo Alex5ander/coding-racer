@@ -1,6 +1,6 @@
 /**@param data {{name:string; character:number}} */
 const network = (data) => {
-  const socket = io('https://coding-racer-server.onrender.com');
+  const socket = io();
 
   socket.emit('join', data);
 
